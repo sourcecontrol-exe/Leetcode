@@ -1,6 +1,6 @@
 all: 
 	git add .
-	var=$(git status --porcelain | grep "^A" | cut -c 4- )
-	echo {$var}
-	git commit -m {$var}
+	v=$(git status --porcelain | grep "^A" | cut -c 4- )
+	echo $v
+	git commit -m {$v}
 	git push -u origin master
