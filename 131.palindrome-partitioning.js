@@ -9,37 +9,33 @@
  * @param {string} s
  * @return {string[][]}
  */
-var palindrome = (str) => {
-
-    let left = 0;
-    let right = str.length - 1;
-
-    while (left < right) {
-        if (str[left] !== str[right]) return false;
-        left++;
-        right--;
-    }
-    return true;
-}
-
-var partition = function (s) {
-    let result = [];
-    function permutate(s, arr = []) {
-
-        if (s.length == 1) {
-            arr.push(s)
-            result.push(arr)
+var partition = function(s) {
+    
+    function isPalindrome(str) {
+        let left = 0, right = str.length-1;
+        
+        while(left < right) {
+            if(str[left] !== str[right]) return false
+            left++;
+            right--;
         }
-        for (var i = 1; i < s.length; i++) {
-            if (palindrome(s.slice(0, i))) {
-                permutate(s.slice(i), [...arr, s.slice(0, i)])
+        return true;
+    }
+    
+    const result = [];
+    
+    function permute(arr, str,) {
+        if(!str.length) result.push(arr);
+        
+        for(let i = 1; i <= str.length; i++) {
+            const subStr = str.slice(0, i);
+            if(isPalindrome(subStr)) {
+                permute([...arr, subStr], str.slice(i));
             }
         }
     }
-    permutate("aab");
+    permute([], s);
     return result;
 };
-console.log(partition("a"));
-
 // @lc code=end
 
