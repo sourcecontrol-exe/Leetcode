@@ -21,7 +21,17 @@ function QuickSort(array) {
   return QuickSort(left).concat(pivot, QuickSort(right));
 };
 
-// Quick select algo 
+// subsets algo;
+let resutl = []
+let i=0;
+function subsets(i,t){
+  if(i==subsets.length){
+    resutl.push(t);
+    return
+  }
+  subsets(i+1,t.concat(array[i]))
+  subsets(i+1, t);
+}
 
 
 
