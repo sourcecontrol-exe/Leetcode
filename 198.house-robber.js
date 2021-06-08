@@ -12,12 +12,18 @@
 var rob = function (nums) {
     let dp = nums;
 
-    for (let index = 1; i < nums.length; i++) {
-        dp[i] = Math.max(nums[i-1], nums[i]+nums[i-2]);
+    if (nums.length < 3) {
+        return Math.max(...nums);
     }
-    console.log(dp)
-};
 
-console.log(rob([1, 2, 3, 1]))
+    dp[1] = Math.max(dp[0], dp[1]);
+
+    for (let i = 2; i < nums.length; i++) {
+        dp[i] = Math.max(dp[i - 1], dp[i] + dp[i - 2]);
+    }
+    return dp[dp.length-1]
+};
+console.log(rob([2, 1, 1, 2]))
+
 // @lc code=end
 
