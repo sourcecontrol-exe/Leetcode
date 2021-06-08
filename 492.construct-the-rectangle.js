@@ -9,11 +9,16 @@
  * @param {number} area
  * @return {number[]}
  */
-var constructRectangle = function(area) {
-   for(var i =0; i<Math.sqrt(n)/2; i++){
-       console.log(i)
-   }
+var constructRectangle = function (area) {
+    let sqr = Math.sqrt(area);
+
+    for(var i = parseInt(sqr); i>=1;i--){
+        if(area%i==0){
+            return [area/i,i];
+        }
+    }
+    return [area,1];
 };
-console.log(constructRectangle(37));
+
 // @lc code=end
 
