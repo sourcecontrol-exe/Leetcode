@@ -20,23 +20,30 @@ function isPalindrom(s) {
     }
     return true;
 }
+
+
 var longestPalindrome = function (s) {
-    if(s.length==0) return "";
 
-    if(s.length ==1)return s[0]
-    let max = '';
+    let maxsub = '';
+    function bubble(left,right){
+        while(left<s.length && right>=0 && s[left]== s[right]){
+            left++;
+            right--;
+        }
+        return s.slice(left, right+1);
+    }
 
-    
-    for (var i = 0; i < s.length - 1; i++) {
-        for (var j = s.length-1; j >=i; j--) {
-            if(isPalindrom(s.slice(i,j+1))){
-                if(s.slice(i,j+1).length > max.length){
-                    max = s.slice(i,j+1)
-                }
-            }
+    for(var i =0;i<s.length;i++){
+        let sub1 = bubble(i,i);
+        let sub2 = bubble(i,i+1);
+
+        let sub = sub1.length>sub2.length ? sub1:sub2;
+        if(sub.length > maxsub){
+            maxsub = sub;
         }
     }
-    return max
+    return maxsub;
 };
+console.log(longestPalindrome("baaaabaaaa"))
 // @lc code=end
 
