@@ -23,27 +23,27 @@ function isPalindrom(s) {
 
 
 var longestPalindrome = function (s) {
+    let maxPal = '';
 
-    let maxsub = '';
-    function bubble(left,right){
-        while(left<s.length && right>=0 && s[left]== s[right]){
-            left++;
-            right--;
-        }
-        return s.slice(left, right+1);
+    for (let i = 0; i < s.length; i++) {
+        bubble(i, i); // odd palindrome
+        bubble(i, i + 1); // even palindrome
     }
 
-    for(var i =0;i<s.length;i++){
-        let sub1 = bubble(i,i);
-        let sub2 = bubble(i,i+1);
+    function bubble(left, right) {
 
-        let sub = sub1.length>sub2.length ? sub1:sub2;
-        if(sub.length > maxsub){
-            maxsub = sub;
+        while (left >= 0 && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        left++;
+        right--;
+
+        if (maxPal.length < right - left + 1) {
+            maxPal = s.slice(left, right + 1)
         }
     }
-    return maxsub;
+    return maxPal;
 };
-console.log(longestPalindrome("baaaabaaaa"))
 // @lc code=end
 
