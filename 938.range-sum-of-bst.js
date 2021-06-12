@@ -19,17 +19,20 @@
  * @param {number} high
  * @return {number}
  */
-var rangeSumBST = function (root, low, high, sum=0) {
-	if (!root) return
-	if (root.val < low) rangeSumBST(root.right, low, high, sum);
-	if (root.val > high) rangeSumBST(root.left, low, high, sum);
-	
-		sum += root.val;
-		rangeSumBST(root.left, low, high, sum);
-		rangeSumBST(root.right, low, high, sum);
-	
-	return sum
+var rangeSumBST = function (root, low, high) {
+	let sum  = 0;
+	dfs(root);
 
+	return sum ;
+
+	function dfs(node) {
+		if (!node) return;
+		if (node.val < low) { dfs(node.right); return }
+		if (node.val > high) { dfs(node.left); return}
+		sum+=node.val
+		dfs(node.left);
+		dfs(node.right);
+	}
 };
 
 // @lc code=end
