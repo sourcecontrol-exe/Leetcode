@@ -11,15 +11,11 @@
  */
 var singleNumber = function (nums) {
 
-	let set = {}
-	for (var i = 0; i < nums.length; i++) {
-		if (set[nums[i]] == undefined) { set[nums[i]] = 0};
-		set[nums[i]]++;
-	}
-	for(let key in set){
-		if(set[key]%2!=0) return key;
-	}
-
+	let temp = nums[0] 
+	for(let i=1;i< nums.length ; i++){
+		temp^=nums[i];
+	}	
+	return temp;
 };
 // @lc code=end
 
