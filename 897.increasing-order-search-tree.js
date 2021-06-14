@@ -18,9 +18,24 @@
  * @return {TreeNode}
  */
 var increasingBST = function (root) {
-	if (!root) return null;
-	increasingBST(root.left);
-	
-};
-// @lc code=end
+	let list = []
+	inorder(root, list);
+	for (let i = 0; i < list.length; i++) {
+		if (i == list.length - 1) {
+			list[i].right = null;
+		} else {
+			list[i].right = list[i + 1]
+		}
 
+		list[i].left = null;
+	}
+
+	return list[0];
+};
+const inorder = (root, list) => {
+	if (root == null) return
+	inorder(root.left, list);
+	list.push(root);
+	inorder(root.right, list);
+}
+// @lc code=end
