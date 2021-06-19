@@ -66,6 +66,5 @@ var countSmaller = function (nums) {
     return inversion;
 
 }
-console.log(countSmaller([3, 4, 6, 3, 5]))
 // @lc code=end
 
