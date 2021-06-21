@@ -10,21 +10,19 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
-	if (nums.length == 0) return 0;
+	if(nums.length ==0) return 0;
+	if(nums.length ==1 ) return nums[0];
 	let dp = new Array(nums.length).fill(0);
+	let max = nums[0];
+	dp[0]= nums[0];
 
-	dp[0] = nums[0];
-
-	for (var i = 0; i < nums.length; i++) {
-		dp[i+1] = Math.max(nums[i] + dp[i], dp[i])
+	for(let i =1;i< nums.length;i++){
+		dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
+		if(dp[i] > max){
+			max = dp[i];
+		}
 	}
-	console.log(dp)
-	//return dp[dp.length-1]
+	return max;
 };
-// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5]))
-/*0 0 0 0 0
--2 1
-*/
 
-// @lc code=end
-
+// @lc code=en
