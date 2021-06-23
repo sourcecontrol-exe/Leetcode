@@ -9,8 +9,6 @@
  * @param {string} s
  * @return {number}
  */
-<<<<<<< HEAD
-
 var numDecodings = function(s, i=0, memo={}) {
     console.log(s[i]);
     if(i in memo) return memo[i];
