@@ -9,14 +9,15 @@
  * @param {string} s
  * @return {number}
  */
-var numDecodings = function (s) {
+var numDecodings = function (s, i=0, memo = {}) {
 
-	let set = new Set(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26'])
-
-
-
+	if(i in memo) return memo[i];
+	if(s[i]==="0") return 0;
+	if(i>= s.length-1) return 1;
+	
+	memo[i]= numDecodings(s,i+1, memo)+(s[i]+s[i+1]<27? numDecodings(s,i+2,memo):0)
+	return memo[i];
 };
-console.log(numDecodings("asd"));
 /*
 226
 i=1
