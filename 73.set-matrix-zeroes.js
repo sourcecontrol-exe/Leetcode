@@ -18,10 +18,17 @@ var setZeroes = function (matrix) {
 			}
 		}
 	}
+	console.log(zero)
+	for(let k =0 ;k< zero.length;k++){
+		for(let l  =0; l<matrix.length;l++){
+			matrix[l][zero[k][1]] = 0
+		}
+		for(let m = 0; m< matrix[0].length;m++){
+			matrix[zero[k][0]][m] = 0;
+		}
+	}
 
 	return matrix;
 };
-console.log(setZeroes([[1,1,1],[1,0,1],[1,1,1]]))
-
 // @lc code=end
 
