@@ -9,6 +9,7 @@
  * @param {string} s
  * @return {number}
  */
+<<<<<<< HEAD
 
 var numDecodings = function(s, i=0, memo={}) {
     console.log(s[i]);
@@ -19,5 +20,21 @@ var numDecodings = function(s, i=0, memo={}) {
     return memo[i];
 };
 console.log(numDecodings('234'))
+=======
+var numDecodings = function (s) {
+
+	let set = new Set(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26'])
+
+
+
+};
+console.log(numDecodings("asd"));
+/*
+226
+i=1
+
+
+*/
+>>>>>>> 2b57bb7af93a0fbaebd82bed0b90716c96a7f101
 // @lc code=end
 
