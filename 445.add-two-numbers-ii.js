@@ -17,49 +17,51 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-let reverse = function(head){
-	if(!head || !head.next){
-		return head;
-	}
-	let currentHead = head.next;
-	let reversedList = head;
-	reversedList.next = null;
 
-	while(currentHead){
-		let temp = currentHead;
-		currentHead = currentHead.next;
+function reverse(head) {
+	if(!head || !head.next) return head;
+	
+	let reversed = head;
+	let toBeReversed = head.next;
+	reversed.next = null;
+	
+	while(toBeReversed){
+		let temp = toBeReversed;
+		toBeReversed = toBeReversed.next;
 
-		temp.next = reversedList;
-		reversedList = temp;
+		temp.next = reversed;
+		reversed = temp;
 	}
-	return reversedList;
+	return reversed;
 }
-var addTwoNumbers = function(l1, l2) {
-	let head = new ListNode(0);
-	let temp = head; 
-	let sum = 0; 
-	let carry =0;
 
-	let rl1 = reverse(l1);
-	let rl2 = reverse(l2);
-
-	while(rl1 || rl2 || carry){
-		if(rl1){
-			sum+=rl1.val;
-			rl1 = rl1.next;
+var addTwoNumbers = function (l1, l2) {
+	let sum =0; 
+	let carry =0; 
+	let revList1 = reverse(l1);
+	let revList2 = reverse(l2);
+	let res = new ListNode(0);
+	let rPointer = res;
+	while(revList1 || revList2 || carry){
+		if(revList1){
+			sum+=revList1.val;
+			revList1 = revList1.next;
 		}
-		if(rl2){
-			sum+=rl2.val;
-			rl2= rl2.next;
+		if(revList2){
+			sum+=revList2.val;
+			revList2 = revList2.next;
 		}
 		if(carry){
 			sum+=carry;
-			carry = 0;
+			carry=0;
 		}
 		carry = Math.floor(sum/10);
-		sum = 
+		sum= sum%10;
+		rPointer.next = new ListNode(sum);
+		rPointer = rPointer.next;
+		sum=0;
 	}
-    
+	return reverse(res.next);
 };
 // @lc code=end
 
