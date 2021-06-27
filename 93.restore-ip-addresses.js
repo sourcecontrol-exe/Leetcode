@@ -9,40 +9,33 @@
  * @param {string} s
  * @return {string[]}
  */
-function isValid(s) {
-    if(s=="") return false;
-    if (s.length == 1 && Number(s) >= 0) return true;
-    if (s.length > 1) {
-        if (s[0] == '0' || Number(s) < 0 || Number(s) > 255 ) return false
-    }
-    return true
-}
+
+
 
 var restoreIpAddresses = function (s) {
-    if (s.length < 4 || s.length > 12) return [];
-
-    let result = new Set();
-
-    function dfs(index, ans, range) {
-        if (range == 4) {
-            if (isValid(s.slice(index, s.length))) {
-                
-                ans += "." + (s.slice(index, s.length));
-                result.add(ans.slice(1,ans.length));
-            }
-            return
+    const result = []
+    
+    function permute(arr, str) {
+        if(arr.length === 3) {
+            if(isValid(str)) result.push([...arr, str]);
+            return;
         }
-        for (var i = 1; i < 4; i++) {
-            let temp = s.slice(index, index + i);
-            if (isValid(temp)) {
-                dfs(index+i, ans+'.'+temp, range+1)
-            }
-
+        
+        for(let i = 1; i < 4; i++) {
+            let subStr = str.slice(0, i);
+            if(!isValid(subStr)) continue;
+            permute([...arr, subStr], str.slice(i));
         }
     }
-
-    dfs(0, "", 1)
-    return [...result];
+    
+    function isValid(str) {
+        if(+str > 255 || !str.length) return false;
+        if(str.length >= 2 && str[0] === '0') return false;
+        return true;
+    }
+    
+    permute([], s);
+    return result.map(x => x.join('.'))
 
 };
 // @lc code=end
