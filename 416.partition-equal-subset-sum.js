@@ -24,7 +24,6 @@ var canPartition = function (nums) {
 		}
 	}
 	return dp[target] === target;
-
 };
 
 // @lc code=end
