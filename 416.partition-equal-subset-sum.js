@@ -21,12 +21,11 @@ var canPartition = function (nums) {
 	for (var i = 0; i < nums.length; i++) {
 		for (var j = target; j >= nums[i]; j--) {
 			dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
-			console.log(dp)
 		}
 	}
 	return dp[target] === target;
 
 };
-console.log(canPartition([1,2,5,5,11]));
+
 // @lc code=end
 
