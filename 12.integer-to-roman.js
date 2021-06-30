@@ -26,23 +26,17 @@ var intToRoman = function(num) {
         'IV': 4,
         'I': 1   
     }
-    
-    let ans = '';
-    
-    for(const el in obj){
-        if(num === 0) break;
-        if(num === obj[el]){
-            ans += el;
-            break;
-        }
-        while(num >= obj[el]){
-            ans += el;
-            num -= obj[el];
+    let res =''
+    for(let i in obj){
+        if(obj[i]<= num){
+            while(num>=obj[i]){
+                num-=obj[i];
+                res+=i
+            }
         }
     }
-    
-   return ans;
+    return res
 };
-console.log(intToRoman(923))
+console.log(intToRoman(99));
 // @lc code=end
 
