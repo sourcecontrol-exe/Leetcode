@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=235 lang=javascript
+ * @lc app=leetcode id=236 lang=javascript
  *
- * [235] Lowest Common Ancestor of a Binary Search Tree
+ * [236] Lowest Common Ancestor of a Binary Tree
  */
 
 // @lc code=start
@@ -12,7 +12,6 @@
  *     this.left = this.right = null;
  * }
  */
-
 /**
  * @param {TreeNode} root
  * @param {TreeNode} p
@@ -20,12 +19,7 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function(root, p, q) {
-	while(root){
-		if(root.val > q.val && root.val > p.val) root = root.left;
-		else if (root.val< q.val && root.val < p.val) root= root.right;
-		else break;
-	}
-	return root
+    
 };
 // @lc code=end
 
