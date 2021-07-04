@@ -17,7 +17,7 @@ var subsets = function (nums) {
 			res.push([...ele, nums[i]])
 		})
 	}
-	console.log(res)
+	return res
 };
 // @lc code=end
 
