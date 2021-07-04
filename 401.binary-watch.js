@@ -9,15 +9,20 @@
  * @param {number} turnedOn
  * @return {string[]}
  */
-var readBinaryWatch = function(turnedOn) {
-   let time = "0000000000";
-   let window = new Array(turnedOn).fill(1).join("")
-   console.log(window);
-   for(let i = 0 ;i< time.length- turnedOn;i++){
-	   
-   }
+var readBinaryWatch = function (turnedOn) {
 
-};
-console.log(readBinaryWatch(3));
+	let res = [];
+	for (let i = 0; i < 12; i++) {
+		for (let j = 0; j <60; j++) {
+			let h = i ? i.toString(2).match(/1/g).length : 0;
+			let m = j ? j.toString(2).match(/1/g).length : 0;
+			if (h + m == turnedOn) {
+				
+				res.push(`${i}:${j < 10 ? `0${j}` : j}`)
+			}
+		}
+	}
+	return res;
+}
 // @lc code=end
 
