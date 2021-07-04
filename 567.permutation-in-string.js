@@ -11,28 +11,26 @@
  * @return {boolean}
  */
 var checkInclusion = function (s1, s2) {
+	
+	if (s1.length > s2.length) return false
 
-	let permutations = [];
-	let workingArr = s1.split("");
+	const set = {}
 
-	function helper(workingArr, curr = []) {
-		if(!workingArr.length){
-			permutations.push(curr.join(","));
-			return
+	s1.split("").forEach(ele=>{
+		if(!set[ele]) set[ele] = 0;
+		set[ele]++;
+	})
+
+	for (let i = 0; i <=s2.length - s1.length; i++) {
+		let window = s2.slice(i,i+s1.length);
+		let setcopy = {...set};
+		for(let j  = window.length-1;j>=0;j--){
+			if(setcopy[window[j]]) setcopy[window[j]]--
+			else break;
 		}
-		let set = new Set();
-		for (let i = 0; i<workingArr.length;i++){
-			if(set.has(workingArr[i])) continue;
-			curr+=workingArr[i];
-			set.add(workingArr[i]);
-			let rest = workingArr.filter((ele,index)=> index!=i);
-			helper(rest, curr);
-			curr.splice(curr.length-1,1);
-		}
+		if(Object.values(setcopy).filter(ele => ele != 0).length == 0) return true;
 	}
-	helper(workingArr)
-	console.log(permutations)
+	return false;
 };
-console.log(checkInclusion('123','asd'))
 // @lc code=end
 
