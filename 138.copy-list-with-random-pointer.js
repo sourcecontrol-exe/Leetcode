@@ -40,18 +40,28 @@ var copyRandomList1 = function (head) {
 
 };
 var copyRandomList = function (head) {
-	function createNewNodes(node) {
-		if (!node) return;
+	function createNewNode(node){
+		if(!node) return
 		const newNode = new Node(node.val);
 		newNode.next = node.next;
 		node.next = newNode;
-		createNewNodes(newNode.next);
+		createNewNode(newNode.next)
 	}
-	function linkRandomNode(node) {
-		if (!node) return;
-		node.next.random = node.random ? node.random.next : null;
-		linkRandomNode(node.next.next);
-	} 
+	function createRandomLink(node){
+		if(!node) return;
+		node.next.random = node.random? node.random.next: null;
+		createRandomLink(node.next.next)
+	}
+	function restore(node){
+		if(!node) return null;
+		const temp = node.next;
+		node.next = node.next.next;
+		temp.next = restore(node.next)
+		return temp;
+	}
+	createNewNode(head);
+	createRandomLink(head);
+	return restore(head);
 };
 // @lc code=end
 
