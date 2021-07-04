@@ -9,22 +9,20 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var permuteUnique = function (nums, current = [], result = {}) {
+var permuteUnique = function (nums, curr = [], result = []) {
 
-	if (!nums.length) {
-		console.log(current.join(""))
-		return;
-	}
-	for (let i = 0; i < nums.length; i++) {
-		current.push(nums[i]);
+	if(!nums.length){ result.push([...curr]); return}
+
+	let set = new Set()
+	for(let i = 0;i<nums.length;i++){
+		if(set.has(nums[i])) continue;
+		curr.push(nums[i])
+		set.add(nums[i])
 		let rest = nums.filter((ele,index)=> index!=i);
-		
-		permuteUnique(rest,current,result);
-		current.pop();
+		permuteUnique(rest,curr,result);
+		curr.pop();
 	}
-	return Object.values(result);
-
+	return result
 };
-console.log(permuteUnique([1, 1, 2]))
 // @lc code=end
 
