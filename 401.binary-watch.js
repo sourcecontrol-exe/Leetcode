@@ -17,8 +17,8 @@ var readBinaryWatch = function (turnedOn) {
 			let h = i ? i.toString(2).match(/1/g).length : 0;
 			let m = j ? j.toString(2).match(/1/g).length : 0;
 			if (h + m == turnedOn) {
-				
-				res.push(`${i}:${j < 10 ? `0${j}` : j}`)
+				if(j<10) j = '0'+j;
+				res.push(i+":"+j);
 			}
 		}
 	}
