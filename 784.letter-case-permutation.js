@@ -25,17 +25,17 @@ var letterCasePermutation1 = function (s, curr = '', result = new Set(), index =
 	return [...result];
 };
 var letterCasePermutation = function (S) {
-	const queue = [S];
+	let res = [S];
 	for (let i = 0; i < S.length; i++) {
-		if (!isNaN(S[i])) continue;
-		const size = queue.length;
-		for (let j = 0; j < size; j++) {
-			const node = queue.shift();
-			queue.push(node.slice(0, i) + node[i].toLowerCase() + node.slice(i + 1));
-			queue.push(node.slice(0, i) + node[i].toUpperCase() + node.slice(i + 1));
+		if(!isNaN(S[i])) continue;
+		for(let j = 0;j< res.length ;j++){
+			const node = res.shift();
+			res.push(node.splice(0,i)+node[i].toLowerCase()+node.slice(i+1));
+			res.push(node.splice(0,i)+node[i].toLowerCase()+node.slice(i+1));
 		}
 	}
-	return queue;
+	return res;
 };
+
 // @lc code=end
 
