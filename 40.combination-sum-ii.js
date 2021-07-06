@@ -10,19 +10,50 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum2 = function(candidates, target, sum=0,index, curr =[], res=[]) {
-    if(sum==target){
-	    res.push([...curr]);
-	    return
-    }
-    if(sum > target || index == candidates.length ) return;
-    curr.push(candidates[index]);
-    console.log(sum);
-    combinationSum2(candidates, target, sum+candidates[index],index,curr, res);
-    curr.pop();
-    combinationSum2(candidates,target,sum, index+1, curr,res);
-    return res;
+var combinationSum = function(candidates, target) {
+  
+	candidates.sort((a,b)=> a-b);
+	let res = [];
+	let set = new Set();
+	function helper(sum=0,index = 0,curr = []){
+
+		if(sum == target){
+			let key  = curr.join("")
+			if(set.has(key)) return
+			set.add(key);
+			res.push([...curr]);
+			return; 
+		}
+		if(index == candidates.length || sum > target) return;
+
+		curr.push(candidates[index]);
+		helper(sum+candidates[index], index+1, curr);
+		curr.pop();
+		helper(sum, index+1, curr);
+	}
+	helper();
+	return res;
 };
-console.log(combinationSum2([10,1,2,7,6,1,5], 8));
+
+var combinationSum2 = function(candidates, target) {
+   candidates.sort((a,b)=> a-b);
+     let result = []
+
+     function getCombos(target,combo=[], start =0){
+          if(target <= 0){
+               if(target===0 ){ result.push([...combo]);};
+               return
+          }
+
+          for(var i =start; i< candidates.length ; i++){
+               if(i > start && candidates[i] === candidates[i - 1]) continue;
+               getCombos(target-candidates[i], [...combo,candidates[i]],i+1);
+          }
+     }
+
+     getCombos(target);
+      return result
+    
+};
 // @lc code=end
 
