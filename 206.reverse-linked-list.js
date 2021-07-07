@@ -16,26 +16,24 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList1 = function(head) {
-
-    if(!head || !head.next) return head;
-    
-    let reverse = head;
-
-    let listToDo = head.next;
-     
-    reverse.next = null;
-
-    while(listToDo){
-        let temp = listToDo;
-        listToDo = listToDo.next;
-        temp.next = reverse;
-        reverse = temp;
-    }
-    return reverse;
-
-};
 var reverseList = function(head) {
+    if(!head || !head.next ) return head;
+    
+    let reverseList = head;
+    let tobeReversed = reverseList.next;
+    reverseList.next = null;
+     
+    while(tobeReversed){
+        let temp = tobeReversed.next;
+        tobeReversed.next = reverseList;
+        reverseList = tobeReversed;
+        tobeReversed = temp
+    }
+
+    return reverseList;
+};
+
+var reverseList1= function(head) {
 
     if(!head || !head.next) return head;
 
