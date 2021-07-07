@@ -17,14 +17,19 @@
  * @param {Node|null} root
  * @return {number}
  */
-var maxDepth = function (root, depth = 1, max = 0) {
-	if (!root) return depth;
-	if (root.children) {
-		for (let child of root) {
-			max = Math.max(maxDepth(child, depth + 1, max), max);
+var maxDepth = function (root) {
+
+	if(!root) return 0; 
+	let m = -1;
+	function helper (root, Depth=1){
+		m = Math.max(m , Depth);
+		for(let child of root.children){
+			helper(child, Depth+1)
 		}
 	}
-	return max
+	helper(root);
+	return m;
+	
 };
 // @lc code=end
 
