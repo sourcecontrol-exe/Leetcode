@@ -26,7 +26,7 @@ const pivot = (arr, start = 0, end = arr.length + 1) => {
 
 	return pointer;
 }
-var sortColors = function (arr, start = 0, end = arr.length) {
+var sortColors1 = function (arr, start = 0, end = arr.length) {
 	let pivotIndex = pivot(arr, start, end);
 
 	if (start >= end) return arr;
@@ -35,5 +35,23 @@ var sortColors = function (arr, start = 0, end = arr.length) {
 
 	return arr.splice(arr.length-1,1);
 };
+var sortColors = (arr)=>{
+
+	let set = {};
+
+	for(let i =0 ; i< arr.length;i++){
+		if(!set[arr[i]]) set[arr[i]] = [];
+		set[arr[i]].push(arr[i]);
+	}
+
+	arr.splice(0,arr.length);
+	let start = 0
+	for(let item in set){
+		arr.splice(start,0,...set[item])
+		start+=set[item].length;
+	}
+	
+	return arr;
+}
 // @lc code=end
 
