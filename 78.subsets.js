@@ -11,11 +11,8 @@
  */
 var subsets = function (nums) {
 	let res = [[]];
-
-	for (let i = 0;i<nums.length ;i++){
-		res.forEach(ele=>{
-			res.push([...ele, nums[i]])
-		})
+	for(let i =0;i< nums.length;i++){
+		res.forEach((ele)=>  res.push([...ele, nums[i]]));
 	}
 	return res
 };
