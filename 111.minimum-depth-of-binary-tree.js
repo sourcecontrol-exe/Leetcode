@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=104 lang=javascript
+ * @lc app=leetcode id=111 lang=javascript
  *
- * [104] Maximum Depth of Binary Tree
+ * [111] Minimum Depth of Binary Tree
  */
 
 // @lc code=start
@@ -17,9 +17,8 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root, depth=0) {
-  if(!root) return depth;
-  return Math.max(maxDepth(root.left,depth+1), maxDepth(root.right, depth+1)); 
+var minDepth = function (root) {
+	 
 };
 // @lc code=end
 
