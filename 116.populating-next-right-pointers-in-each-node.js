@@ -19,11 +19,25 @@
  * @param {Node} root
  * @return {Node}
  */
-var connect = function(root) {
-   if(!root) return
-   root.left.next = root.right
-   if(root.left) connect(root.left)
-   if(root.right) connect(root.right)
+var connect = function (root) {
+   if(!root) return null;
+
+   let queue = [root];
+
+   while(queue.length){
+      let currArr = [];
+      let n = queue.length
+      for(let i =0;i< n ;i++){
+         let curr = queue.shift();
+         currArr.push(curr);
+         if(curr.left) queue.push(curr.left);
+         if(curr.right) queue.push(curr.right);
+      }
+      for(let i = 0;i < currArr.length ; i++){
+         currArr[i].next = currArr[i+1];
+      }
+   }
+   return root;
 };
 // @lc code=end
 
