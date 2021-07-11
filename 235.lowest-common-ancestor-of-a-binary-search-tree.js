@@ -19,10 +19,11 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
-	while(root){
-		if(root.val > q.val && root.val > p.val) root = root.left;
-		else if (root.val< q.val && root.val < p.val) root= root.right;
+var lowestCommonAncestor = function (root, p, q) {
+
+	while (root) {
+		if (root.val > q.val && root.val > p.val) root = root.left;
+		else if (root.val < q.val && root.val < p.val) root = root.right;
 		else break;
 	}
 	return root
