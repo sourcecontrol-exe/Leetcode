@@ -19,8 +19,25 @@
  * @param {Node} root
  * @return {Node}
  */
+
 var connect = function (root) {
-   if(!root) return null;
+
+   if (!root) return null;
+
+   let res = [root]
+
+   while (res.length) {
+      let curr = [];
+      let n = res.length;
+      for (let i = 0; i < n ;i++){
+         
+      }
+   }
+};
+// @lc code=end
+
+/*
+ if(!root) return null;
 
    let queue = [root];
 
@@ -38,6 +55,4 @@ var connect = function (root) {
       }
    }
    return root;
-};
-// @lc code=end
-
+*/
