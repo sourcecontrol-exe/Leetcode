@@ -22,22 +22,25 @@
 
 var connect = function (root) {
 
-   if (!root) return null;
+   if(!root) return null;
 
-   let res = [root]
+   let queue = [root];
 
-   while (res.length) {
-      let curr = [];
-      let n = res.length;
-      for (let i = 0; i < n ;i++){
-         let currEle = res.shift()
-         if(currEle.left) curr.push(currEle.left);
-         if(currEle.right) curr.push(currEle.right);
-         for(let items in curr){
-            items
-         }
+   while(queue.length){
+      let currArr = [];
+      let n = queue.length
+      for(let i =0;i< n ;i++){
+         let curr = queue.shift();
+         currArr.push(curr);
+         if(curr.left) queue.push(curr.left);
+         if(curr.right) queue.push(curr.right);
+      }
+      for(let i = 0;i < currArr.length ; i++){
+         currArr[i].next = currArr[i+1];
       }
    }
+   return root;
+  
 };
 // @lc code=end
 
