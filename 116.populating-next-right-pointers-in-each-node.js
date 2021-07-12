@@ -30,7 +30,12 @@ var connect = function (root) {
       let curr = [];
       let n = res.length;
       for (let i = 0; i < n ;i++){
-         
+         let currEle = res.shift()
+         if(currEle.left) curr.push(currEle.left);
+         if(currEle.right) curr.push(currEle.right);
+         for(let items in curr){
+            items
+         }
       }
    }
 };
