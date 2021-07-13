@@ -23,8 +23,6 @@ var topKFrequent = function(nums, k) {
 
 	res.sort((a,b)=> obj[b]-obj[a]);
 
-	let ans = res.map(ele=> parseInt(ele))
-
 	return res.slice(0,k).map(ele=> parseInt(ele))
 
 };
