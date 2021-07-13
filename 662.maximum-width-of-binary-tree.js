@@ -17,23 +17,34 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var widthOfBinaryTree = function(root) {
-	if(!root) return 0; 
+/* 
+ !important concept
+ *find the difference between tw nopn zero nodes and compare with the maxwidth
+*/
+var widthOfBinaryTree = function (root) {
+	if (!root) return 0;
 
-	let max = 0;
-	let queue =[root]
-	while(queue.length){
+	let max = 0, l = 0, r = 0;
+	let queue = [[root, 0]]
+	while (queue.length) {
 		let n = queue.length;
-		let curr = 0
-		for(let i =0;i< n;i++){
-			let currItem = queue.shift()
-			if(currItem.left)queue.push(currItem.left)
-			if(currItem.right)queue.push(currItem.right)
-			if(currItem.left || currItem.right) curr+=2;
+		const startIdx = queue[0][1];
+		for (let i = 0; i < n; i++) {
+			let [curr , index] = queue.shift();
+			
+			if(i == 0){
+				l = index;
+			}
+			if(i == n-1){
+				r = index 
+			}
+			let subindex = index - startIdx
+			if(curr.left) queue.push([curr.left, subindex*2+1])
+			if(curr.right) queue.push([curr.right, subindex*2+2]) 
 		}
-		if(max<curr) max = curr;
+		max = Math.max(r-l+1, max)
 	}
-  
+
 	return max
 };
 // @lc code=end
