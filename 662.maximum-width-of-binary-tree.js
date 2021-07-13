@@ -24,14 +24,14 @@ var widthOfBinaryTree = function(root) {
 	let queue =[root]
 	while(queue.length){
 		let n = queue.length;
-		let curr = []
+		let curr = 0
 		for(let i =0;i< n;i++){
 			let currItem = queue.shift()
-			curr.push(currItem)
-			queue.push(currItem.left|| null)
+			if(currItem.left)queue.push(currItem.left)
 			if(currItem.right)queue.push(currItem.right)
-			if(max<curr.length) max= curr.length
+			if(currItem.left || currItem.right) curr+=2;
 		}
+		if(max<curr) max = curr;
 	}
   
 	return max
