@@ -14,18 +14,18 @@ var majorityElement = function (nums) {
 
 	let currmax = 0;
 	let max = 0
-	let maxnum =0
+	let maxnum = nums[0]
 	for(let i = 1 ;i<nums.length;i++){
-		if(arr[i-1] == arr[i]){
+		if(nums[i-1] == nums[i]){
 			currmax++;
 			if(max<currmax) {
 				max = currmax
-				maxnum = arr[i]
+				maxnum = nums[i]
 			}
 		}
 		else currmax=0
 	}
-	console.log (maxnum)
+	return maxnum
 };
 // @lc code=end
 
