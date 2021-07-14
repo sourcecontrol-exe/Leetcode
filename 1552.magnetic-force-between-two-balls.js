@@ -10,6 +10,11 @@
  * @param {number} m
  * @return {number}
  */
+/*
+* sort the array
+* binary search
+*  
+*/
 var maxDistance = function (position, m) {
 	
 	position.sort((a,b)=> a-b);
@@ -20,7 +25,8 @@ var maxDistance = function (position, m) {
 		for(let i = 1; i< position.length ;i++){
 			if(position[i] - curr >=d){
 				ans++;
-				curr = position[i]
+				console.log(position[i], curr,position[i]-curr,ans)
+				curr = position[i];
 			}
 		}
 		return ans
@@ -37,5 +43,6 @@ var maxDistance = function (position, m) {
 	return l-1; 
 
 };
+maxDistance([1,2,3,4,7],3);
 // @lc code=end
 
