@@ -11,14 +11,28 @@
  * @return {string[]}
  */
 var topKFrequent = function(words, k) {
-   let map = {};
+   let map = new Map();
    
    for(let item of words){
-	   if(!map[item]) map[item] =0;
-	   map[item]++;
+	   if(!map.has(item)) map.set(item,0);
+	   let frq = map.get(item)
+	   map.set(item,frq+1);
    }
-   console.log(map);
+   
+   let arr = Array.from(map);
+   arr.sort((a,b)=>{
+	   if(a[1]==b[1]){
+		return a[0].localeCompare(b[0])
+	   }
+	   else{
+		return b[1]- a[1]
+	   }
+   })
+   let res = []
+   for(let i =0 ;i<k ;i++){
+	res.push(arr[i][0])
+   }
+   return res
 };
-console.log(topKFrequent(["i", "love", "leetcode", "i", "love", "coding"],2));
 // @lc code=end
 
