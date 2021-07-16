@@ -18,7 +18,7 @@
  */
 var mergeKLists = function(lists) {
 
-	if(lists.length == 0 ) return [];
+	if(lists.length == 0 ) return null;
 
 	let map = new Map();
 	for(let i =0;i< lists.length;i++){
@@ -27,7 +27,7 @@ var mergeKLists = function(lists) {
 		while(temp){
 			if(!map.has(temp.val)) map.set(temp.val,0)
 			let mapVal = map.get(temp.val)
-			map.set(temp.val,mapVal++)
+			map.set(temp.val,mapVal+1)
 			temp= temp.next
 		}
 	}
@@ -39,7 +39,9 @@ var mergeKLists = function(lists) {
 
 	for(let item of arr){
 		while(item[1]--){
-			console.log(item[0])
+			let n = new ListNode(item[0])
+			temp.next = n;
+			temp = temp.next; 
 		}
 	}
 	return res.next
