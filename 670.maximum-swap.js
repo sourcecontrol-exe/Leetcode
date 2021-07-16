@@ -9,18 +9,22 @@
  * @param {number} num
  * @return {number}
  */
-var maximumSwap = function(num) {
-	
-	let arr = num.toString().split().sort((a,b)=> b-a);
+var maximumSwap = function (num) {
 
-	num = num.toString();
+	let arr = num.toString().split('').sort((a, b) => parseInt(b,10) - parseInt(a,10));
 
-	for(let item of arr){
+	num = num.toString().split("");
 
+	for (let i = 0; i < arr.length; i++) {
+		if(arr[i] !== num[i]){
+			let temp = num[num.indexOf(arr.reverse()[i])];
+			num[num.indexOf(arr[i])] = num[i];
+			num[i] = temp
+			break;
+		}
 	}
-	console.log(nums)
+	return parseInt(num.join(""),10)
 };
-console.log(maximumSwap(4575))
 // @lc code=end
 
 /*
