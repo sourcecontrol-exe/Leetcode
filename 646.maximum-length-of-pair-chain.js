@@ -10,9 +10,18 @@
  * @return {number}
  */
 var findLongestChain = function(pairs) {
-    let map = new Map(pairs);
-    console.log(map.keys())
+    pairs.sort((a,b)=> a[1]-b[1]);
+    let prev= pairs[0];
+    let chain =1;
+    for( let item of pairs){
+        let [prevkey, prevValue] = prev;
+        let [currKey, currValue] = item;
+        if(prevValue < currKey){
+            prev = item;
+            chain++;
+        }
+    }
+    return chain;
 };
-console.log(findLongestChain([[1,2],[2,3],[3,4]]))
 // @lc code=end
 
