@@ -33,7 +33,3 @@ var maximumSwap = function (num) {
 // console.log(maximumSwap(2880))
 // @lc code=end
 
-/*
-34589
-9 8 5 4 3
- */
