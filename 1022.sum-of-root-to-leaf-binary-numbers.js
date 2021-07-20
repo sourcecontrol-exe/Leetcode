@@ -22,7 +22,8 @@ var sumRootToLeaf = function(root) {
 	function helper(root, str = [], sum =0){
 	
 		if(!root){
-			sum+= parseInt(str.join(""),10);
+			sum= sum +parseInt(str.join(""),10);
+			console.log(sum)
 			return
 		}
 		str.push(root.val);
