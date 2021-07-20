@@ -19,22 +19,18 @@
  */
 var sumRootToLeaf = function(root) {
 
-	function helper(root, str = [], sum =0){
-	
+	function helper(root, str = ""){
 		if(!root){
-			sum= sum +parseInt(str.join(""),10);
-			console.log(sum)
-			return
+			return 0;
 		}
-		str.push(root.val);
-		console.log(str.join(""))
-		helper(root.left,str,sum)
-		helper(root.right, str,sum)
-		str.pop()
-		return sum
+		str+=root.val;
+		if(!root.left && !root.right){
+			return parseInt(str,2)
+		}
+		return helper(root.left,str) + helper(root.right,str);
 	}
-	let ans = helper(root)
-	return ans
+	let a = helper(root)
+	return a;
 };
 // @lc code=end
 
