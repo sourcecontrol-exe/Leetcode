@@ -10,31 +10,31 @@
  * @return {number[][]}
  */
 var findSubsequences = function (nums) {
-	let res = []
-	let arr = [nums[0]];
-	function binearySearch(num) {
+	let res =[];
+	let dp = [nums[0]];
 
-		let l =0;
-		let h = arr.length - 1;
-		while(l<h){
-			let mid = l + (Math.floor(h-r)/2)
-			if(arr[mid] > num){
-				l = mid+1;
+	function binaryInsert(val){
+		let low =0;
+		let high = dp.length-1;
+		while(low<high){
+			let mid = low + Math.floor((high-low)/2);
+			if(val > dp[mid]){
+				low = mid+1;
 			}
 			else{
-				h = mid;
+				high = mid;
 			}
 		}
-		return l
+		return low;
 	}
 
 	for(let item of nums){
-		if(item > arr[arr.length-1]) arr.push(item)
+		if(item > dp[dp.length-1]) dp.push(item);
 		else{
-			let index = binearySearch(item);
-			arr[index] = item
+			let index = binaryInsert(item)
+			dp[index] = item;
 		}
-		res.push(arr)
+		res.push([...dp])
 	}
 	return res;
 };
