@@ -17,7 +17,7 @@ var trap = function (height) {
 				maxleft = height[left]
 			}
 			else{
-				totalwater+= maxleft - height[left];
+				totalwater += maxleft - height[left];
 			}
 			left++
 		}
@@ -26,7 +26,7 @@ var trap = function (height) {
 				maxright = height[right];
 			}
 			else{
-				totalwater+=maxright - height[right];
+				totalwater += maxright - height[right];
 			}
 			right--;
 		}
