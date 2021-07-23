@@ -13,6 +13,7 @@
 var coinChange = function (coins, amount) {
 	if (amount == 0) return 0;
 	let res = new Array(amount + 1).fill(Number.MAX_SAFE_INTEGER)
+	res[0] = 0
 	for (let i = 0; i <= amount; i++) {
 		for (let j = 0; j < coins.length; j++) {
 			if (coins[j] <= i) {
@@ -21,8 +22,7 @@ var coinChange = function (coins, amount) {
 		}
 	}
 
-	console.log(res)
+	return res[amount] == Number.MAX_SAFE_INTEGER? -1: res[amount] ;
 };
-console.log(coinChange([1, 2, 5], 11))
 // @lc code=end
 
