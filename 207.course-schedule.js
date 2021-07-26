@@ -31,7 +31,7 @@ var canFinish1 = function (numCourses, prerequisites) {
 		count++;
 
 		for (let [course, prereq] of prerequisites) {
-			if (prereq == c) {
+			if (c==prereq) {
 				courses[course] -= 1;
 				if (courses[course] == 0) queueOfZeroIndegree.push(course)
 			}
