@@ -10,7 +10,7 @@
  * @param {number[][]} prerequisites
  * @return {boolean}
  */
-var canFinish = function (numCourses, prerequisites) {
+var canFinish1 = function (numCourses, prerequisites) {
 
 	let courses = new Array(numCourses).fill(0);
 
@@ -44,5 +44,16 @@ var canFinish = function (numCourses, prerequisites) {
 	
 	 */
 };
+var canFinish = (numCourses, prerequisites)=>{
+
+	let map = {}
+
+	for(let [c,p] of prerequisites){
+		if(!map[c]) map[c] = []
+		map[c].push(p)
+	}
+	console.log(map);
+}
+console.log(canFinish(3,[[1,0],[0,1],[1,4]]))
 // @lc code=end
 
