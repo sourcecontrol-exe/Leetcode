@@ -13,47 +13,49 @@
  */
 var jobScheduling = function (startTime, endTime, profit) {
 
-	class node {
-		constructor(start, end, profit) {
-			this.start = start,
-				this.end = end,
-				this.profit = profit
-		}
-	}
+	class node{
+        constructor(start, end, profit){
+            this.start= start,
+            this.end = end, 
+            this.profit = profit
+        }
+    }
+    
+    let jobs = []
 
-	let n = startTime.length
+    for(let i =0;i< startTime.length;i++){
+        jobs.push(new node(startTime[i], endTime[i], profit[i]))
+    }
+    
+    jobs.sort((a,b)=> a.start!==b.start ?a.start-b.start : a.end-b.end)
+    
+    let dp = new Array(startTime.length +1).fill(0);
+    
+    
+    function bs(i){
+        let left = i+1;
+        let right = jobs.length;
+        while(left<right){
+            let mid = Math.floor((left+right)/2)
+            if(jobs[mid].start >= jobs[i].end){
 
-	let tasks = []
-
-	for (let i = 0; i < n; i++) {
-		tasks.push(new node(startTime[i], endTime[i], profit[i]))
-	}
-
-	tasks.sort((a, b) => a.startTime == b.startTime ? a.endTime - b.endTime : a.startTime - b.startTime);
-
-	let dp = new Array(n + 1).fill(0);
-
-	let profitTracker = new Array(n+1).fill(0)
-
-	function bs(index){
-		let low = 0;
-		let high = tasks.length;
-		while(low< high){
-			let mid = Math.floor((low+high)/2);
-			if(tasks[mid].startTime >=tasks[index].endTime){
-				low = mid;
-			}
-			else{
-				high = mid-1;
-			}
-		}
-		return low
-	}
-	for(let i = tasks.length-1; i<=0 ; i--){
-		let index = bs(i);
-		console.log(index);
-	}
+               right = mid
+            }
+            else{
+                left = mid+1
+            }
+        }
+        return left;
+    }
+    
+    for(let i = startTime.length-1;i>=0;i--){
+        let index = bs(i)
+	// console.log(index)
+        dp[i] = Math.max(dp[i+1], dp[index]+jobs[i].profit)
+        
+    }
+    return dp[0];
 };
-console.log(jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]))
+// console.log(jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]))
 // @lc code=end
 
