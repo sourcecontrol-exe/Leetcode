@@ -9,20 +9,15 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-	if(prices.length < 1) return 0
-	let max = 0;
-	let total = 0; 
-	let currmin = prices[0];
-	for(let item of prices){
-		max = Math.nax(max, item - currmin);
-		if(item<currmin && max !==0){
-			total+=max
-		}
-		currmin = Math.min(item, currmin);
+var maxProfit = function (arr) {
+
+	let total = 0;
+	let currmin = arr[0];
+	for (let i = 1; i < arr.length; i++) {
+		if(arr[i] > currmin) total+=arr[i]-currmin;
+		currmin = arr[i]
 	}
-	return total; 
+	return total;
 };
-console.log(maxProfit([7,1,5,3,6,4]))
 // @lc code=end
 
