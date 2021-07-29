@@ -1,10 +1,9 @@
 import math
 import sys
 def UBK(sum, index, arr):
+        if(sum<0): return sys.maxint
         
-        if(sum<0 or index<0): return 0
-        
-        if(sum==0): return arr[index-1]
+        if(sum == 0 or index<1): return 0 
         
         if(arr[index-1] == -1): return UBK(sum,index-1,arr)
         

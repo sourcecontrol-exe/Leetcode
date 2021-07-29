@@ -1,9 +1,10 @@
-
 import math
- 
 
-def fillPrimes(chprime, high):
- 
+test = int(input())
+for _ in range(test):
+    [low,high] = list(map(int,input().split()))
+    chprime = list()
+    
     ck = [True]*(high+1)
  
     l = int(math.sqrt(high))
@@ -17,13 +18,7 @@ def fillPrimes(chprime, high):
     for k in range(2, l+1):
         if ck[k]:
             chprime.append(k)
-
- 
-test = int(input())
-for _ in range(test):
-    [low,high] = list(map(int,input().split()))
-    chprime = list()
-    fillPrimes(chprime, high)
+    
 
     prime = [True] * (high-low + 1)
 

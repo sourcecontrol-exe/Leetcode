@@ -10,15 +10,18 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-	if (prices.length < 1) return 0;
+	
+	if(prices.lenght < 1) return 0;
 
-	let curMin = prices[0];
-	let ans = 0;
-	for (var i = 0; i <prices.length ; i++){
-		ans = Math.max(prices[i] - curMin, ans);
-		curMin = Math.min(curMin, prices[i]);
+	let max  = 0;
+
+	let currentmin = prices[0];
+	
+	for(let i =1;i< prices.length;i++){
+		max = Math.max(max , prices[i] - currentmin );
+		currentmin = Math.min(prices[i], currentmin)
 	}
-	return ans
+	return(max)
 };
 // @lc code=end
 
