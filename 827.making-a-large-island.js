@@ -9,9 +9,6 @@
  * @param {number[][]} grid
  * @return {number}
  */
-
-
-
 var largestIsland = function (grid) {
 	let g = grid
 	let n = grid.length
@@ -37,19 +34,20 @@ var largestIsland = function (grid) {
 			}
 		}
 	}
-	for (let i = 0; i < n; i++) {
-		for (let j = 0; j < m; j++) {
-			if (g[i][j] == 0) {
-				let se = new Set([getColor(i + 1, j), getColor(i - 1, j), getColor(i, j + 1), getColor(i, j - 1)]);
-				console.log(se)
-				let newSize = 1;
-				for (const color of se) {
-					newSize += sizes[color];
-				}
-				res = Math.max(res, newSize);
-			}
-		}
-	}
+	console.log(g)
+	// for (let i = 0; i < n; i++) {
+	// 	for (let j = 0; j < m; j++) {
+	// 		if (g[i][j] == 0) {
+	// 			let se = new Set([getColor(i + 1, j), getColor(i - 1, j), getColor(i, j + 1), getColor(i, j - 1)]);
+	// 			console.log(se)
+	// 			let newSize = 1;
+	// 			for (const color of se) {
+	// 				newSize += sizes[color];
+	// 			}
+	// 			res = Math.max(res, newSize);
+	// 		}
+	// 	}
+	// }
 	return res == 0 ? n * m : res;
 };
 // @lc code=end
