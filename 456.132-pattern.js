@@ -11,7 +11,6 @@
  */
 
 var find132pattern = function (nums) {
-
 	let s3 = Number.MIN_SAFE_INTEGER;
 	let stack = [];
 
@@ -24,8 +23,5 @@ var find132pattern = function (nums) {
 	}
 	return false;
 }
-/*
-
- */
 // @lc code=end
 
