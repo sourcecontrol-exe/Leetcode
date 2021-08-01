@@ -17,24 +17,23 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function (head) {
-	let stack = [], node = head;
-	if (!node) return
-	while (node) {
-		stack.push(node)
-		node = node.next;
-	}
-	let len = stack.length;
-	node = head;
-	for (var i = 0; i< len;i++){
-		if(i%2==0){
-			node.next = stack.shift();
-		} else{
-			node.next = stack.pop();
-		}
-		node = node.next;
-	}
-	node.next = null;
 
+	let arr = []
+	let node = head;
+	while(node){
+		arr.push(node);
+		node = node.next
+	}
+	let left = 0, right = arr.length-1;
+
+	while(left<right){
+		arr[left].next = arr[right]
+		left++;
+		arr[right].next = arr[left]
+		right--;
+	}
+	arr[left].next = null
+	return arr[0]
 };
 // @lc code=end
 
