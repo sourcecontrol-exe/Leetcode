@@ -9,21 +9,21 @@
  * @param {number[]} nums
  * @return {boolean}
  */
+
 var find132pattern = function (nums) {
-	let keyvalue = []
-	let temp = [...nums]
-	let sorted = [...nums].sort((a,b)=> a-b);
-	for (let i = 0; i < sorted.length; i++) {
-		let index = temp.indexOf(sorted[i])
-		temp[index] = null
-		keyvalue.push([sorted[i],index])
+
+	let s3 = Number.MIN_SAFE_INTEGER;
+	let stack = [];
+
+	for (let i = nums.length - 1; i >= 0; i--) {
+		if (nums[i] < s3) return true;
+		while (stack.length  > 0 && nums[i] > stack[stack.length-1]){
+			s3 = stack.pop();
+		}
+		stack.push(nums[i]);
 	}
-	
-	
-
-};
-console.log(find132pattern([3, 5, 0, 3, 4]))
-
+	return false;
+}
 /*
 
  */
