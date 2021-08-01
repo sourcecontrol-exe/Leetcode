@@ -10,32 +10,26 @@
  * @return {string[]}
  */
 var letterCasePermutation1 = function (s, curr = '', result = new Set(), index = 0) {
-	if (result.has(curr)) return;
-	if (index == s.length) {
-		result.add(curr);
-		return;
-	}
-	if ((!isNaN(s[index]))) {
-		letterCasePermutation(s, curr + s[index], result, index + 1)
-	}
-	letterCasePermutation(s, curr + s[index].toLowerCase(), result, index + 1)
 
-	letterCasePermutation(s, curr + s[index].toUpperCase(), result, index + 1);
-
-	return [...result];
 };
-var letterCasePermutation = function (S) {
-	let res = [S];
-	for (let i = 0; i < S.length; i++) {
-		if(!isNaN(S[i])) continue;
-		for(let j = 0;j< res.length ;j++){
-			const node = res.shift();
-			res.push(node.splice(0,i)+node[i].toLowerCase()+node.slice(i+1));
-			res.push(node.splice(0,i)+node[i].toLowerCase()+node.slice(i+1));
+var letterCasePermutation = function (s) {
+
+	let queue = [S];
+
+	let res = []
+	while(queue.length){
+		let node = queue.shift();
+		res.push(node)
+		for(let i = 0 ;i<node.length;i++){
+			if(isNaN(node[i])){
+				queue.push(S.slice(0,i-1)+node[i].toUpperCase()+S.slice(i+1))
+				queue.push(S.splice(0,i)+node[i].toLowerCase(),s.slice(i+1))
+			}
 		}
 	}
-	return res;
+	console.log(res)
 };
+console.log(letterCasePermutation("A1B1"))
 
 // @lc code=end
 
