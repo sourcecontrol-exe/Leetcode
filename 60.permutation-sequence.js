@@ -11,27 +11,28 @@
  * @return {string}
  */
 var getPermutation = function(n, k) {
-	let s = ''
+	let s = []
 	for(let i = 1;i<=n;i++){
-		s+=i.toString()
+		s.push(i)
 	}
 	
-	function helper(s,res=[],curr=""){
+	function helper(s,k,res=[],curr=[]){
 		if(!s.length){
-			res.push(curr);
+			res.push([...curr]);
+			k--;
 			return;
 		}
 		for(let i = 0;i<s.length;i++){
-			let rest = s.split("").filter((ele,index)=> index !== i).join(",");
-			curr+=s[i];
-			helper(rest,res,curr);
-			curr = curr.slice(0,-1);
+			let rest = s.filter((ele,index)=> index !== i)
+			curr.push(s[i])
+			if(res.length == k) break
+			helper(rest,k,res,curr);
+			curr.pop()
 		}
 		return res
 	}
-	let a =  helper(s)
-	return a;
+	let a =  helper(s,k)
+	return a[a.length-1].join("")
 };
-console.log(getPermutation("abs"))
 // @lc code=end
 
