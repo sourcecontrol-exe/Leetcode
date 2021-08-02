@@ -11,43 +11,31 @@
  * @return {number[]}
  */
 var findAnagrams = function (s, p) {
-	if (p.length > s.length) return []
 
-	var compareAnagram = (a, b) => {
-		if (a.length < b.length) return false
-		if (a === b) return true
+	let sarr = new Array(26).fill(0);
+	let parr = new Array(26).fill(0);
 
-		let setA = {}
-		let setB = {}
-
-		for (let item of a.split("")) {
-			if (!setA[item]) setA[item] = 0;
-			setA[item]++
-		}
-		for (let item of b.split("")) {
-			if (!setB[item]) setB[item] = 0;
-			setB[item]++
-		}
-
-		for (let keys of Object.keys(setA)) {
-			if (!setB[keys]) {
-				console.log(setA[keys], setB[keys])
+	for(let i =0;i< p.length;i++){
+		sarr[s.charCodeAt(i)-97]++;
+		parr[p.charCodeAt(i)-97]++;
+	}
+	function isAnagram(sarr,parr){
+		for(let i =0;i< parr.length;i++){
+			if(sarr[i]!==parr[i]){
+				return false
 			}
-			setB[keys] = setB[keys] - setA[keys]
 		}
-		// for (let values of Object.values(setB)) {
-		// 	if (values !== 0) return false
-		// }
 		return true
 	}
-	let res = []
-	for (let i = 0; i <= s.length - p.length; i++) {
-		let substr = s.slice(i, i + p.length);
-		if (compareAnagram(substr, p)) res.push(i);
+
+	let result = []
+	for(let i =0;i< s.length;i++){
+		if(isAnagram(sarr,parr)){
+			result.push(i);
+		}
+		sarr[s.charCodeAt(i)-97]--;
+		sarr[s.charCodeAt(i+p.length)-97]++;
 	}
-	return res
-
+	return result
 };
-console.log(findAnagrams("abab", "ab"))
 // @lc code=end
-
