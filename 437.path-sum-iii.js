@@ -25,5 +25,10 @@ var pathSum = function (root, targetSum, currSum= targetSum) {
 	if (currSum < root.val) return pathSum(root.left,targetSum, targetSum) + pathSum(root.right, targetSum, targetSum);
 	return pathSum(root.left,targetSum , currSum- root.val) + pathSum(root.right, targetSum, currSum-root.val);
 };
+/*
+ [5,4,8,11,null,13,4,7,2,null,null,5,1],
+     
+
+*/
 // @lc code=end
 
