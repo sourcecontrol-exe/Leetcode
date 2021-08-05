@@ -10,7 +10,11 @@
  * @return {number}
  */
 var numberOfWeeks = function(milestones) {
-    
+
+	let sum =  0
+	milestones.map(ele => sum += ele);
+	
+	return Math.min(sum, 2*(sum-Math.max(...milestones))+1)
 };
 // @lc code=end
 
