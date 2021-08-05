@@ -15,15 +15,17 @@ var isThree = function (n, temp =0) {
 		if (n <= 2) return false
 
 		for (let i = 2; i < Math.sqrt(n)+1; i++) {
-			if (n % i == 0) temp++
+			if (n % i == 0) {
+				temp++
+				if(n / i < n && n/i !== i) temp++;
+			}
 		}
-		console.log(Math.sqrt(n), temp)
 		if (temp !== 1) return false
 		else return true;
 	}
 
 	return isPrime(n);
 };
-console.log(isThree(14))
+// console.log(isThree(6))
 // @lc code=end
 
