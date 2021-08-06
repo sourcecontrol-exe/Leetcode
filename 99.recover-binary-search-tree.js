@@ -17,13 +17,29 @@
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
-var recoverTree = function(root, arr = []) {
-	
-	if(root.left)recoverTree(root.left, arr)
-	arr.push(root.val);
-	if(root.right) recoverTree(root.right, arr)
+var recoverTree = function (root) {
 
-	console.log(arr)
+	let prev = null, big = null, short = null;
+
+	function helper(root) {
+		if(!root) return
+
+		helper(root.left);
+
+		if(prev!==null && prev.val > root.val){
+			short  = root;
+			if(!big) big = prev
+			else return
+		}
+		prev = root
+		helper(root.right);
+	}
+
+	helper(root);
+
+	[big.val,short.val] = [short.val, big.val]; 
 };
+
+
 // @lc code=end
 
