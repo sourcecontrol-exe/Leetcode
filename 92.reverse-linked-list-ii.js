@@ -28,21 +28,22 @@ var reverseBetween = function (head, m, n) {
         curr = curr.next;
         i++;
     }
-    let Reversed = null;
-    let todo = curr;
-
-    while(i<=n){
+    
+     let reversed = null; 
+     let todo = curr;
+      while(i<= n){
+        
         let next = curr.next;
-        curr.next = Reversed;
-        Reversed = curr;
+        curr.next = reversed;
+        reversed = curr;
         curr = next;
         i++;
-    }
+      }
 
-    start.next = Reversed;
-    todo.next = curr;
+      start.next = reversed;
+      todo.next = curr;
+      return m == 1 ? reversed:head
 
-    return m==1? Reversed:head
 };
 // @lc code=end
 
