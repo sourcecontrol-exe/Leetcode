@@ -10,15 +10,11 @@
  * @return {number}
  */
 
-var numDecodings = function (s) {
+var numDecodings = function (s, index=0) {
 	
-	function Helper(i, memo = {}) {
-		if (i in memo) return memo[i];
-		if (s[i] == '0') return 0;
-		if (i >= s.length - 1) return 1;
-		memo[i] = Helper(i + 1) + (s[i] + s[i + 1] < 27 ? Helper(i + 1) : 0);
-		return memo;
-	}
+	if(s[index] =='0') return 0;
+	if(index>= s.length-1) return 1;
+	
 };
 // @lc code=end
 
