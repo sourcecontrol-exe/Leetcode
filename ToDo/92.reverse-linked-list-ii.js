@@ -18,34 +18,31 @@
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function (head, m, n) {
+var reverseBetween = function (head, m, n) { 
 
-    let revHead = head, part1Tail = null;
-    for (let i=1;i<m;i++) {
-        part1Tail = revHead;
-        revHead = revHead.next;
-    }
-    
-    let revTail = revHead; // after the reversal, the original head will become the tail
-    let revPrev = null, revNext = null;
-    for (let i=0;i<=(n-m);i++) {
-        revNext = revHead.next;
-        revHead.next = revPrev;
-        revPrev = revHead;
-        revHead = revNext;
-    }
-    
-    // revHead now is the head of part2 
-	// connect reversed part to part2
-    revTail.next = revHead;
-    
-    // m == 1, the new head is the head of the reversed part
-    if (part1Tail == null) return revPrev;
-    
-    // revPrev now is the head of the reversed part
-    part1Tail.next = revPrev;
-    return head;
+    let start = head, curr = head;
 
+    let i = 1;
+    while(i< m){
+        start = curr;
+        curr = curr.next;
+        i++;
+    }
+    let Reversed = null;
+    let todo = curr;
+
+    while(i<=n){
+        let next = curr.next;
+        curr.next = Reversed;
+        Reversed = curr;
+        curr = next;
+        i++;
+    }
+
+    start.next = Reversed;
+    todo.next = curr;
+
+    return m==1? Reversed:head
 };
 // @lc code=end
 
