@@ -18,16 +18,16 @@
  * @param {number} targetSum
  * @return {number[][]}
  */
-var pathSum = function(root, targetSum, curr=[], res = []) {
+var pathSum = function (root, targetSum, curr = [], res = []) {
 
-	if(!root) return [...res];
-	if(!root.left && !root.right && targetSum == root.val) {
+	if (!root) return [...res];
+	if (!root.left && !root.right && targetSum == root.val) {
 		curr.push(root.val);
-		return [...res,[...curr]];
+		return [...res, [...curr]];
 	}
-	return [...pathSum(root.left,targetSum - root.val, [...curr,root.val],res),
-	...pathSum(root.right,targetSum - root.val,[...curr,root.val], res)]
-	
+	return [...pathSum(root.left, targetSum - root.val, [...curr, root.val], res),
+	...pathSum(root.right, targetSum - root.val, [...curr, root.val], res)]
+
 };
 // @lc code=end
 
