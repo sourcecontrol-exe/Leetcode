@@ -18,10 +18,10 @@ var minStoneSum = function (piles, k) {
 		let high = piles.length
 		while(low<high){
 			let mid = low + Math.floor((high-low)/2);
-			if(piles[mid]<=item){
+			if(piles[mid]<item){
 				low = mid+1
 			}
-			else high = mid-1
+			else high = mid
 		}
 		return low;
 	}
@@ -30,14 +30,12 @@ var minStoneSum = function (piles, k) {
 		let pop = piles.pop()
 		let num = Math.ceil(pop/2)
 		let index = binearySearch(num);
-		console.log(piles, index, num)
 		piles.splice(index,0,num);
 	}
-	console.log(piles)
 	let sum = 0;
 	piles.map(ele => sum+= ele );
 	return sum
 };
-console.log(minStoneSum([5,4,9], 2))
+
 // @lc code=end
 
