@@ -1,7 +1,11 @@
 t = int(input())
 for _ in range(t):
-        a = list(map(int, input().split()))
-        d = list(set(a))
-        if(len(d) == 1): print(0)
-        elif(len(d) == 2 or len(d) == 3): print(1)
-        else: print(2)
+    l = list(map(int, input().split()))
+    l.sort()
+    [a, b, c, d] = l
+    if(a == b and b == c and c == d):
+        print(0)
+    elif((a == b and b == c) or (b == c and c == d)):
+        print(1)
+    else:
+        print(2)
