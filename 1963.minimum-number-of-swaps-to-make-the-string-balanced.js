@@ -23,4 +23,3 @@ var minSwaps = function(s) {
 };
 // console.log(minSwaps(']]][[['))
 // @lc code=end
-
