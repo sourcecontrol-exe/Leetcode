@@ -35,25 +35,31 @@ var distanceK = function (root, target, k) {
 				node.right.parent = node
 				q.push(node.right)
 			}
-			if (node.val = target) {
-				tque = [node];
+			if (node.val == target.val && target) {
+				targetQueue.push(node);
 			}
 		}
 	}
+
 
 	let visited = new Set()
 
 	let index = 0;
 	let ans = []
+
 	while (targetQueue.length) {
 		let n = targetQueue.length;
 		for (let i = 0; i < n; i++) {
 			let node = targetQueue.shift()
+			
+			if(visited.has(node.val)) continue;
 
-			if (node.left && !visited.has(node.left.val)) targetQueue.push(node.left);
 			if (node.parent && !visited.has(node.parent.val)) targetQueue.push(node.parent);
+			if (node.left && !visited.has(node.left.val)) targetQueue.push(node.left);			
 			if (node.right && !visited.has(node.right.val)) targetQueue.push(node.right);
+			
 			visited.add(node.val);
+
 			if (index == k) ans.push(node.val)
 		}
 		index++;
