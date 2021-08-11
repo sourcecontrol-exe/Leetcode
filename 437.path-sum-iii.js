@@ -18,12 +18,18 @@
  * @param {number} targetSum
  * @return {number}
  */
-var pathSum = function (root, targetSum, currSum= targetSum) {
+var pathSum = function (root, targetSum, curr = [], res =[]) {
 
-	if (!root) return 0;
-	if(currSum==root.val) return 1;
-	if (currSum < root.val) return pathSum(root.left,targetSum, targetSum) + pathSum(root.right, targetSum, targetSum);
-	return pathSum(root.left,targetSum , currSum- root.val) + pathSum(root.right, targetSum, currSum-root.val);
+	if(!root) return;
+	if(targetSum<0) return;
+	if(targetSum == root.val) {
+		curr.push(root.val);
+		res=[...res,[...curr]]
+		return
+	}
+	pathSum(root.left,targetSum-root.val,[...curr,root.val], res)
+	pathSum(root.right,)
+
 };
 /*
  [5,4,8,11,null,13,4,7,2,null,null,5,1],
