@@ -27,6 +27,11 @@ var distanceK = function (root, target, k) {
 		let n = q.length
 		for (let i = 0; i < q.length; i++) {
 			let node = q.shift()
+			
+			if (node.val == target.val && target) {
+				targetQueue.push(node);
+			}
+			
 			if (node.left) {
 				node.left.parent = node
 				q.push(node.left)
@@ -35,9 +40,7 @@ var distanceK = function (root, target, k) {
 				node.right.parent = node
 				q.push(node.right)
 			}
-			if (node.val == target.val && target) {
-				targetQueue.push(node);
-			}
+			
 		}
 	}
 
@@ -50,8 +53,9 @@ var distanceK = function (root, target, k) {
 	while (targetQueue.length) {
 		let n = targetQueue.length;
 		for (let i = 0; i < n; i++) {
+
 			let node = targetQueue.shift()
-			
+
 			if(visited.has(node.val)) continue;
 
 			if (node.parent && !visited.has(node.parent.val)) targetQueue.push(node.parent);
