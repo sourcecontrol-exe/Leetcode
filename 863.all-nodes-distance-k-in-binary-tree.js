@@ -21,7 +21,7 @@
 var distanceK = function (root, target, k) {
 
 	let q = [root]
-	let targetQueue = []
+	let t;
 
 	while (q.length) {
 		let n = q.length
@@ -29,7 +29,7 @@ var distanceK = function (root, target, k) {
 			let node = q.shift()
 			
 			if (node.val == target.val && target) {
-				targetQueue.push(node);
+				t = node
 			}
 			
 			if (node.left) {
@@ -50,6 +50,7 @@ var distanceK = function (root, target, k) {
 	let index = 0;
 	let ans = []
 
+	let targetQueue = [t];
 	while (targetQueue.length) {
 		let n = targetQueue.length;
 		for (let i = 0; i < n; i++) {
