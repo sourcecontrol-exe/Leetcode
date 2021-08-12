@@ -18,23 +18,32 @@
  * @param {number} targetSum
  * @return {number}
  */
-var pathSum = function (root, targetSum, curr = [], res =[]) {
+var pathSum = function (root, targetSum) {
 
-	if(!root) return;
-	if(targetSum<0) return;
-	if(targetSum == root.val) {
-		curr.push(root.val);
-		res=[...res,[...curr]]
-		return
+	let total = 0;
+	let map = new Map()
+	map.set(0, 1);
+
+	function helper(node, sum) {
+		let total = 0;
+		let map = new Map();
+		map.set(0, 1)
+		function helper(node, sum) {
+			if (node === null) return false;
+			sum = sum + node.val;
+			if (map.has(sum - targetSum)) {
+				total = total + map.get(sum - targetSum)
+			}
+			map.set(sum, (map.get(sum) || 0) + 1)
+			helper(node.left, sum);
+			helper(node.right, sum);
+			map.set(sum, map.get(sum) - 1)
+		}
+		helper(root, 0)
+		return total
 	}
-	pathSum(root.left,targetSum-root.val,[...curr,root.val], res)
-	pathSum(root.right,)
-
 };
 /*
  [5,4,8,11,null,13,4,7,2,null,null,5,1],
-     
-
 */
 // @lc code=end
-
