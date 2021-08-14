@@ -10,29 +10,17 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function(candidates, target) {
-  
-	candidates.sort((a,b)=> a-b);
-	let res = [];
-	let set = new Set();
-	function helper(sum=0,index = 0,curr = []){
-
-		if(sum == target){
-			let key  = curr.join("")
-			if(set.has(key)) return
-			set.add(key);
-			res.push([...curr]);
-			return; 
-		}
-		if(index == candidates.length || sum > target) return;
-
-		curr.push(candidates[index]);
-		helper(sum+candidates[index], index+1, curr);
-		curr.pop();
-		helper(sum, index+1, curr);
+var combinationSum = function(c, t, i=0,curr=[],res=[]) {
+  	if(t ==0){
+		res = [...res,[...curr]]
+		return
 	}
-	helper();
-	return res;
+	if(i>=c.length || t<0) return
+	curr.push(c[i])
+	combinationSum(c,t-c[i],i+1,curr,res)
+	curr.pop()
+	combinationSum(c,t,i+1,curr,res)
+	return res
 };
 
 var combinationSum2 = function(candidates, target) {
