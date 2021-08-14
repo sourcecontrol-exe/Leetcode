@@ -10,13 +10,16 @@
  * @return {number}
  */
 var jump = function (nums) {
-	let temp = nums[nums.length - 1], last = nums.length-1
-	for (let i = nums.length - 2; i <=0; i--) {
-		if(nums[i]+ i >= last) last = i
+	let currmax = 0, jumps = 0, reach =0
+	for (let i = 0; i < nums.length-1;i++){
+		currmax = Math.max(currmax, nums[i]+i);
+		if(i==reach){
+			jumps++
+			reach = currmax;
+		}
 	}
-	console.log(last)
-	return last==0?true: false
+	return jumps
 };
-console.log(jump([2, 3, 1, 1, 4]))
+// console.log(jump([2, 3, 1, 1, 4]))
 // @lc code=end
 
