@@ -10,28 +10,26 @@
  * @return {number}
  */
 var rob = function (nums) {
-	let dp = new Array(nums.length).fill(0);
 
-	if (nums.length <= 3) return Math.max(...nums)
+	let dp1 = nums.slice(0, nums.length - 1)
+	let dp2 = nums.slice(1, nums.length)
+	if (nums.length <= 3) return Math.max(...nums);
 
-	dp[0] = nums[0];
-
-	if (nums[0] > nums[1]) {
-		nums[nums.length - 1] = 0;
-		dp[1] = nums[0];
-	}
-	else{
-		dp[0] = 0; 
-		dp[1] = nums[1];
+	// for dp 1
+	dp1[0] = nums[0];
+	dp1[1] = Math.max(nums[0], nums[1]);
+	for (let i = 2; i < dp1.length; i++) {
+		dp1[i] = Math.max(dp1[i - 1], dp1[i] + dp1[i - 2])
 	}
 
-	for (let i = 2; i <dp.length;i++){
-		dp[i] = Math.max(dp[i-1] ,nums[i]+dp[i-2]);
+	dp2[1] = Math.max(dp2[0], dp2[1])
+	for (let i = 2; i < dp2.length; i++) {
+
+		dp2[i] = Math.max(dp2[i - 1], dp2[i - 2] + dp2[i])
 	}
-	console.log(dp)
-	return dp[dp.length-1]
-	
+	return Math.max(dp1[dp1.length - 1], dp2[dp2.length - 1])
+
 };
-console.log(rob([2,7,9,3,1]))
+//console.log(rob([2, 7, 9, 3, 1]))
 // @lc code=end
 
