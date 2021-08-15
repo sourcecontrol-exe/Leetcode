@@ -11,8 +11,8 @@
  */
 var jump = function (nums) {
 	let max = 0, currmax = 0, jump =0;
-	for (let i = 0; i < nums.length; i++) {
-		currmax = Math.max(currmax, nums[i] + 1)
+	for (let i = 0; i < nums.length-1; i++) {
+		currmax = Math.max(currmax, nums[i] + i)
 		if (i == max) {
 			max = currmax
 			jump++;
