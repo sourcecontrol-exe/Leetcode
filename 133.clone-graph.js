@@ -17,14 +17,13 @@
  * @param {Node} node
  * @return {Node}
  */
-var cloneGraph = function (node, map= new Map()) {
-
-	if(!node) return null
-	if(map.has(node)) return map.get(node)
+var cloneGraph = function (node, map = new Map()) {
+	if (!node) return null
+	if (map.has(node)) return map.get(node)
 	let n = new Node(node.val)
-	map.set(node,n)
-	for(let k of node.neighbors){
-		n.neighbors.push(cloneGraph(k,map))
+	map.set(node, n)
+	for (let k of node.neighbors) {
+		n.neighbors.push(cloneGraph(k, map))
 	}
 	return n
 };
