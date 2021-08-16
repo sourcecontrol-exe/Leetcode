@@ -21,6 +21,7 @@ var mergeKLists = function(lists) {
 	if(lists.length == 0 ) return null;
 
 	let map = new Map();
+
 	for(let i =0;i< lists.length;i++){
 		let p = lists[i]
 		let temp = p;
@@ -41,7 +42,7 @@ var mergeKLists = function(lists) {
 		while(item[1]--){
 			let n = new ListNode(item[0])
 			temp.next = n;
-			temp = temp.next; 
+			temp = temp.next;
 		}
 	}
 	return res.next
