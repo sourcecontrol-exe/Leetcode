@@ -16,10 +16,9 @@ var searchRange = function(nums, target) {
     while(l< r){
 	    let m = l + Math.floor((l+r)/2);
 	    if(nums[m]<target) l = m+1
-	    else r = m
+	    else r = m+1
     }
     console.log(l)
 };
 console.log(searchRange([5,7,7,8,8,10], 8));
 // @lc code=end
-
