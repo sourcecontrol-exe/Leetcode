@@ -18,7 +18,6 @@ var exist = function (board, word) {
 		if (i < 0 || j < 0 || i >= board.length || j >= board[0].length || word[curr] !== board[i][j]) return false;
 
 		if(board[i][j] == word[curr])return tracking(curr+1, i,j)
-
 		
 
 		console.log(tracking(curr,i-1,j) , tracking(curr,i+1,j) , tracking(curr,i,j-1) , tracking(curr,i,j+1))
