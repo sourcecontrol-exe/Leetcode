@@ -25,22 +25,20 @@ var reverseVowels = function(s) {
 	set.add('U')
 
 	let arr = s.split("")
-	let i = 0, j = arr.length-1
-	console.log(arr)
-	while(i<j){
-		if(set.has(arr[i]) && set.has(arr[j])){
-			console.log(arr[i], arr[j])
-			[arr[i], arr[j]] = [arr[j], arr[i]]
-			i++;
-			j--;
-			console.log("swap")
+
+	let low = 0, high = arr.length-1
+	while(low < high){
+		if(set.has(arr[low]) && set.has(arr[high])){ 
+			[arr[low], arr[high]] = [arr[high], arr[low]];
+			low++;
+			high--;
 		}
-		else if(set.has(arr[j])) i++;
-		else  j--;
+		else if(set.has(arr[low])) high--;
+		else low++
 	}
-	// console.log(pointer)
+	
 	return arr.join("")
 };
-console.log(reverseVowels("race car"))
+// console.log(reverseVowels("leetcode"))
 // @lc code=end
 
