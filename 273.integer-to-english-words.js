@@ -13,37 +13,41 @@
 //1235 one thousand 2 hundred thiry five
 var numberToWords = function (num) {
 	let ones = {
-		'1': "One", "2": "Two", "30": "Three", '4': "Four", "5": "Five", "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine", "10": "Ten"
+		'1': "One", '2': "Two", '3': "Three", '4': "Four", '5': "Five", '6': "Six", '7': "Seven", '8': "Eight", '9': "Nine"
 	}
 	let tens = {
-		'10': "Ten", "20": "Twenty", "30": "Thirty", '40': "Fourty", "50": "Fifty", "60": "Sixty", "70": "Seventy", "80": "Eighty", "90": "Ninty"
+		'1': "Ten", '2': "Twenty", '3': "Thirty", '4': "Fourty", '5': "Fifty", '6': "Sixty", '7': "Seventy", '8': "Eighty", '9': "Ninty"
 	}
 
-	let arr = num.toString().split("")
+	let arr = num.toString().split("").reverse()
 	let result = []
 
 	for(let i = 0; i< arr.length;i++){
 		if(i == 0){
 			result.push(ones[arr[i]])
+			continue
 		}
 		else if(i == 1){
 			result.push(tens[arr[i]])
+			continue
 		}
 		else if(i ==2){
-			result.push(Hundred)
-			result.push(ones[arr[i]]);
+			result.push(ones[arr[i]] + " "+"Hundred");
+			//result.push("Hundred")
+			continue
 		}
 		else if(i ==3){
-			result.push("Thousand")
-			result.push(ones[arr[i]])
+			result.push(ones[arr[i]] + " Thousand")
+			continue
 		}
 		else{
 			result.push(tens[arr[i]]);
+			continue
 		}
 	}
 
-	return result.join("");
+	return result.reverse().join(" ")
 };
-console.log(numberToWords(123))
+console.log(numberToWords(1))
 // @lc code=end
 
