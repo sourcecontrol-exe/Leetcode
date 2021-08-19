@@ -20,6 +20,6 @@ var findPeakElement = function(nums) {
 	}
 	return left
 };
-console.log(findPeakElement([1,2,3,1]))
+// console.log(findPeakElement([1,2,3,1]))
 // @lc code=end
 
