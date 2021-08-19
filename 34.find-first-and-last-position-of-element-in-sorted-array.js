@@ -13,31 +13,25 @@
 
 var searchRange = function (nums, target) {
 
-	let l = 0, r = nums.length;
+	let low = 0, high = nums.length - 1, mid;
 
-	while (l < r) {
-		let mid = l + Math.floor((r - l) / 2);
-		if (nums[mid] >= target) r = mid - 1
-		else l = mid + 1
+	// find the start
+	while(low<=high){
+		mid = low+ Math.floor((high-low)/2)
+		if(nums[mid] < target) low = mid+1
+		else  high = mid -1
 	}
+	if(nums[low] !== target) return [-1,-1];
 
-	let p = l;
+	let landMark = low;
+	high = nums.length-1;
 
-	console.log(nums[l])
-
-	if (nums[p] !== target) return [-1, -1];
-
-	while (l < r) {
-
-		let mid = l + Math.floor((r - l) / 2)
-
-		if (nums[mid] <= target) l = mid + 1
-
-		else r = mid - 1;
+	while(low<=high){
+		mid = low+ Math.floor((high-low)/2)
+		if(nums[mid] <= target) low = mid+1
+		else high = mid-1;
 	}
-
-	console.log([p, l])
+	return [landMark, high]	
 };
-
-console.log(searchRange([5, 7, 7, 8, 8, 10], 1))
+// console.log(searchRange([], 8));
 // @lc code=end
