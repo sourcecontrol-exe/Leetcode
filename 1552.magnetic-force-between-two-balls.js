@@ -16,30 +16,30 @@
 *  
 */
 var maxDistance = function (position, m) {
-	
-	position.sort((a, b)=> a - b)
 
+	position.sort((a, b) => a - b);
 
-	function count(mid){
-		let ans = 0, prev = 0; 
-		for(let item of position){
-			if(item  - prev >= mid){
-				ans++;
-				prev = item;
+	let left = 0;
+	let right = position[position.length - 1];
+	while (left <=right) {
+		let mid = left + Math.floor((right - left) / 2);
+		if (ifRerquiredPosition(mid)) left = mid+1
+		else right = mid - 1
+	}
+	return left-1;
+
+	function ifRerquiredPosition(mid) {
+		let balls = 1;
+		let last = position[0];
+		for (let i = 1; i < position.length; i++) {
+			if (position[i] - last >= mid) {
+				last = position[i];
+				balls++
 			}
 		}
-		return ans
+		return balls >= m
 	}
 
-	let left = 0, right = position[position.length-1];
-	while(left < right){
-		let mid = left + Math.floor((right - left)/ 2 );
-		let balls = count(mid);
-		if(balls>=m) left = mid + 1;
-		else right = mid
-	}
-	return left
 };
-console.log(maxDistance([5,4,3,2,1,1000000000],2))
 // @lc code=end
 
