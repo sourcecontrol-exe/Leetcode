@@ -25,7 +25,6 @@ var splitArray = function (nums, m) {
 	let minMax = Math.max(...nums);
 	let maxMax = 0
 	nums.forEach(ele => maxMax += ele);
-
 	/*
 	Now that we have purt search space we can begin searching for 
 	the smallest value within this space such that we can form m 
@@ -39,36 +38,29 @@ var splitArray = function (nums, m) {
 	*/
 
 	while (minMax <= maxMax) {
-		let mid =  minMax + Math.floor((maxMax - minMax) / 2);
-		if (ispossiblity(mid, m)) {
-			console.log(finalresult)
-			finalresult = mid
+		let mid = minMax + Math.floor((maxMax - minMax) / 2);
+		if (isPossile(mid)) {
+			finalresult = mid;
 			maxMax = mid - 1;
 		}
-		else {
-			minMax = mid + 1;
-		}
-		return finalresult;
+		else minMax = mid + 1;
 	}
+	return finalresult
 
 	/*
 	function to see if X is a valid possiblity
 	*/
-
-	function ispossiblity(x, m) {
-		let numberOfSubArr = 1;
-		let subSum = 0
-		for (let num of nums) {
-			subSum += num;
-			/*If currSum exceeds the required sum we create a new split*/
-			if (subSum > x) {
-				numberOfSubArr += 1;
-				subSum = num;
+	function isPossile(targetSum) {
+		let partition = 1, sum = 0;
+		for (let element of nums) {
+			sum += element;
+			if (sum > targetSum) {
+				sum = element;
+				partition++;
 			}
 		}
-		return numberOfSubArr <= m;
+		return partition <= m
 	}
-};
-console.log(splitArray([7,2,5,10,8],3))
-// @lc code=end
 
+};
+// @lc code=end
