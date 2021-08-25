@@ -12,24 +12,27 @@
  */
 var exist = function (board, word) {
 
-	function tracking(curr = 0, i = 0, j = 0) {
-		if(curr>=word.length) return true;
+	function dfs(i, j, k) {
 
-		if (i < 0 || j < 0 || i >= board.length || j >= board[0].length || word[curr] !== board[i][j]) return false;
-
-		if(board[i][j] == word[curr])return tracking(curr+1, i,j)
+		if (k == word.length) return true;
 		
-
-		console.log(tracking(curr,i-1,j) , tracking(curr,i+1,j) , tracking(curr,i,j-1) , tracking(curr,i,j+1))
+		if (i < 0 || j < 0 || i == board.length || j == board[i].length || board[i][j] !== word[k]) return false;
 		
-		return (tracking(curr,i-1,j) || tracking(curr,i+1,j) || tracking(curr,i,j-1) || tracking(curr,i,j+1))
+		board[i][j] = '#'
+		let a = (dfs(i + 1, j, k+1) || dfs(i, j + 1, k+1) || dfs(i - 1, j, k+1) || dfs(i, j - 1, k+1))
+		board[i][j] = word[k]
+		return a;
 	}
 
-
-	console.log(tracking())
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board[i].length; j++) {
+			if (dfs(i, j, 0)) return true
+		}
+	}
+	return false;
 };
-let b = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
-let w = "ABCCED"
-console.log(exist(b,w))
+// let b =[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+// let w = "ABCB"
+// console.log(exist(b, w))
 // @lc code=end
 
