@@ -19,29 +19,45 @@
  * @return {number}
  */
 var pathSum = function (root, targetSum) {
+	/* 
+	three layer dfs
+	first to traverse through the tree
+	sec to seek possiblity for each sub tree
+	*/
 
-	let total = 0;
-	let map = new Map()
-	map.set(0, 1);
+	// let count = 0;
+	// function dfs1(root, targetSum){
+	// 	if(!root) return;
+	// 	dfs2(root,targetSum);
+	// 	dfs1(root.left, targetSum);
+	// 	dfs1(root.right, targetSum);
+	// }
 
-	function helper(node, sum) {
-		let total = 0;
-		let map = new Map();
-		map.set(0, 1)
-		function helper(node, sum) {
-			if (node === null) return false;
-			sum = sum + node.val;
-			if (map.has(sum - targetSum)) {
-				total = total + map.get(sum - targetSum)
-			}
-			map.set(sum, (map.get(sum) || 0) + 1)
-			helper(node.left, sum);
-			helper(node.right, sum);
-			map.set(sum, map.get(sum) - 1)
-		}
-		helper(root, 0)
-		return total
+	// function dfs2(root, targetSum){
+	// 	if(!root) return;
+	// 	if(root.val === targetSum) count++;
+	// 	dfs2(root.left, targetSum - root.val);
+	// 	dfs2(root.right, targetSum - root.val);
+	// }
+	// dfs1(root, targetSum);
+	// return count;
+
+	let total = 0; 
+	let cache = {'0':1};
+	function helper(node, sum){
+		if(!node) return; 
+		sum+=node.val;
+		if(cache[sum - targetSum]) total+= cache[sum - targetSum];
+		if(!cache[sum]) cache[sum] = 0
+		cache[sum]+=1;
+
+		helper(node.left,sum)
+		helper(node.right, sum)
+		cache[sum]-=1
 	}
+	helper(root,0);
+	return total;
+
 };
 /*
  [5,4,8,11,null,13,4,7,2,null,null,5,1],
