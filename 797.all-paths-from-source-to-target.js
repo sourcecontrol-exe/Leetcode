@@ -9,22 +9,20 @@
  * @param {number[][]} graph
  * @return {number[][]}
  */
-var allPathsSourceTarget = function (graph) {
-
-    let result = [], target = graph.length-1;
-
-    function callDFS(node =0 , arr= []){
+var allPathsSourceTarget = function (g) {
+    let target = g.length-1 , res = []
+    
+    function callDFS(node=0, ans = []){
         if(node == target){
-            result.push([...arr,node])
-            return;
+            res.push([...ans, node])
+            return
         }
-        for(var i =0;i<graph[node].length;i++){
-            callDFS(graph[node][i], [...arr,node])
+        for(let i =0; i<g[node].length; i++){
+            callDFS(g[node][i], [...ans,node])
         }
     }
-
     callDFS();
-    return result;
+    return res;
 };
 // @lc code=end
 
