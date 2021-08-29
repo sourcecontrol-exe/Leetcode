@@ -16,23 +16,18 @@ var canPartition = function (nums) {
 
 	if (total % 2 !== 0) return false;
 
-	function permute(sum1, sum2=0, i = nums.length-1, set = {}){
-		let key = sum1+""+sum2
+	let target = total/ 2;
 
-		if(key in set) return set[key];
-		
-		if(sum1 == sum2) return true
-
-		if(sum1<sum2 || i < 0) return false;
-
-		
-
-		let a = permute(sum1 - nums[i], sum2 + nums[i], i-1, set)
-		let b = permute(sum1,sum2, i-1, set)
-		set[key] = a || b
-		return set[key]
+	function helper(sum =0,index=0){
+		if(sum == target) return true;
+		if(sum> target || index>=nums.length) return false
+		return (helper(sum+nums[index], index+1) || helper(sum,index+1))
 	}
-	return permute(total)
+	return helper();
+	/* 
+	improvement with memoization
+	*/
+
 }
 // @lc code=end
 
