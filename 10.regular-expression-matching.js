@@ -10,28 +10,29 @@
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function (s, p, p1 = 0, p2 = 0, memo = {}) {
+var isMatch = function (s, p, memo = {}) {
 
-	let key = p1 + ":" + p2
-	if (key in memo) return memo[key]
+	return check(0, 0);
 
-	if (p1 === s.length && p2 === p.length) return true;
-	if (p1 > s.length) return false;
+	function check(p1, p2) {
 
-	let result = null;
+		let key = p1 + ":" + p2
 
-	if (p[p2] === s[p1] || p[p2] === '.') {
-		if (p[p2 + 1] === '*') result = isMatch(s,p,p1, p2 + 2, memo) || isMatch(s,p,p1 + 1, p2, memo);
-		else result = isMatch(s,p,p1 + 1, p2 + 1, memo);
-	} else {
-		if (p[p1 + 1] === '*') result = isMatch(s,p,p1, p2 + 2,memo);
-		else result = false;
+		if (key in memo) return memo[key];
+
+		if (p1 > s.length) return false
+
+		if (p1 === s.length && p2 == p.length) return true;
+
+		if (p[p2] == '.' || s[p1] === p[p2]) {
+			memo[key] = p[p2 + 1] === "*" ? (check(p1 + 1, p2) || check(p1, p2 + 2)) : check(p1 + 1, p2 + 1)
+		}
+		else {
+			memo[key] = p[p2 + 1] === "*" ? check(p1, p2 + 2) : false
+		}
+		return memo[key]
 	}
-	memo[key] = result
-	return memo[key];
-
 };
-console.log(isMatch("aab", "c*a*b"))
 // @lc code=end
 
 /*
