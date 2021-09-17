@@ -11,5 +11,6 @@ function binearySearch(low, high, val) {
 		if (arr[mid] < val) binearySearch(mid + 1, high, val);
 	}
 	return mid;
+	//thisisjustasmallchangetotest
 }
 console.log(binearySearch(0, arr.length - 1, 56))
