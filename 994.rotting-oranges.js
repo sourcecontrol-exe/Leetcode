@@ -10,8 +10,6 @@
  * @return {number}
  */
 var orangesRotting = function(grid) {
-	// find fresh oranges and push the index keys of the rotten tomatoes in the queue
-	// bfs on that queue
 	const height = grid.length;
 	const width = grid[0].length;
 	let fresh = 0;
